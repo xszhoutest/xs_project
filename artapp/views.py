@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
+=======
+from django.http import HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
+>>>>>>> 5559f1ad351c66c9647e666c9a00fdf7b51ce695
 from artapp.models import ArtTag,Art
 
 
 def index(request):
+<<<<<<< HEAD
     # 获取请求参数中的tag标签分类的id
     tag_id = request.GET.get('tag')
     pageNum = request.GET.get('page')
@@ -38,6 +45,12 @@ def index(request):
                            'page_range': paginator.page_range,
                            'page': page,
                            'tag_id': int(tag_id),
+=======
+
+    # 返回渲染模板
+    return render(request, 'art/list.html',
+                  context={'art':Art.objects.all(),
+>>>>>>> 5559f1ad351c66c9647e666c9a00fdf7b51ce695
                            'tags': ArtTag.objects.all()})
 
 
@@ -73,7 +86,10 @@ def delete_tag(request):
     # 重定向到列表页面
     return redirect('/art/list_tags')
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5559f1ad351c66c9647e666c9a00fdf7b51ce695
 def list_tags(request):
     return render(request,
                   'art/tags_list.html',
@@ -82,4 +98,40 @@ def list_tags(request):
                   })
 
 
+<<<<<<< HEAD
 
+=======
+def add_novel(request):
+    data = {
+        'status': '1',
+        'msg': 'ok',
+    }
+
+    if request.method == 'POST':
+        # 获取浏览器表单提交的小说数据
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        summary = request.POST.get('summary')
+        img = request.POST.get('img')
+
+        if title:
+            # 添加
+            try:
+                novel = Art()
+                novel.title = title
+                novel.author = author
+                novel.summary = summary
+                novel.img = img
+                novel.save()
+
+                return render(request, 'art/succeed.html')
+            except:
+                data['status'] = '-1'
+                data['msg'] = '添加失败'
+                return render(request, 'art/novel.html')
+        else:
+            return render(request, 'art/novel.html')
+    # GET
+    else:
+        return render(request, 'art/novel.html', data)
+>>>>>>> 5559f1ad351c66c9647e666c9a00fdf7b51ce695

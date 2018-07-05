@@ -16,8 +16,12 @@ class Art(models.Model):
     author = models.CharField(max_length=50, blank=True, verbose_name='作者')
     summary = models.TextField(verbose_name='概述')
     # imgurl = models.CharField(max_length=100)
+<<<<<<< HEAD
     img = models.ImageField(upload_to='images', verbose_name='文章的图片', default='http://www.freexs.org/modules/article/images/nocover.jpg')
 
+=======
+    img = models.ImageField(upload_to='', verbose_name='文章的图片')
+>>>>>>> 5559f1ad351c66c9647e666c9a00fdf7b51ce695
 
     counter = models.IntegerField(default=0, verbose_name='阅读次数')
     publish_time = models.DateTimeField(auto_now_add=True, verbose_name='发布时间')

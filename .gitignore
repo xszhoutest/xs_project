@@ -2,3 +2,7 @@
 .idea
 __pycache__
 .gitigonre
+<<<<<<< HEAD
+=======
+.migrations
+>>>>>>> 5559f1ad351c66c9647e666c9a00fdf7b51ce695
